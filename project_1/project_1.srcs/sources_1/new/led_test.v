@@ -59,9 +59,7 @@ begin
     else if (timer == 32'd49_999_999) //time counter count to 1st sec,LED1 lighten
         led <= 4'b0001;
     else if (timer == 32'd99_999_999) //time counter count to 2nd sec,LED2 lighten
-        begin
-            led <= 4'b0010;
-        end
+        led <= 4'b0010;
     else if (timer == 32'd149_999_999) //time counter count to 3nd sec,LED3 lighten
         led <= 4'b0100;
     else if (timer == 32'd199_999_999) //time counter count to 4nd sec,LED4 lighten
