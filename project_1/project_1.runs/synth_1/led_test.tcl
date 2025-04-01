@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.runs/synth_1/led_test.tcl"
+  variable script "C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.runs/synth_1/led_test.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,21 +56,23 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50fgga484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.cache/wt [current_project]
-set_property parent.project_path C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.cache/wt [current_project]
+set_property parent.project_path C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.cache/ip [current_project]
+set_property ip_output_repo c:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.srcs/sources_1/new/led_test.v
+read_verilog -library xil_defaultlib C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.srcs/sources_1/new/led_test.v
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -80,10 +82,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.srcs/constrs_1/new/led.xdc
-set_property used_in_implementation false [get_files C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.srcs/constrs_1/new/led.xdc]
+read_xdc C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.srcs/constrs_1/new/led.xdc
+set_property used_in_implementation false [get_files C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.srcs/constrs_1/new/led.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.srcs/utils_1/imports/synth_1/led_test.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

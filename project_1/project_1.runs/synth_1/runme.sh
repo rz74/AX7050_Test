@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.runs/synth_1'
+HD_PWD='C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

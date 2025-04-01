@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.runs/impl_1/led_test.tcl"
+  variable script "C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.runs/impl_1/led_test.tcl"
   variable category "vivado_impl"
 }
 
@@ -106,16 +106,17 @@ set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
   set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 4  }
   open_checkpoint led_test_routed.dcp
-  set_property webtalk.parent_dir C:/Users/4510181/Downloads/Git/AX7050_Test/project_1/project_1.cache/wt [current_project]
+  set_property webtalk.parent_dir C:/Users/HYRui/OneDrive/DIY/FPGA/AX7050_Test/project_1/project_1.cache/wt [current_project]
 set_property TOP led_test [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }
   catch { write_mem_info -force -no_partial_mmi led_test.mmi }
 OPTRACE "write_bitstream setup" END { }
 OPTRACE "write_bitstream" START { }
-  write_bitstream -force led_test.bit 
+  write_bitstream -force led_test.bit -bin_file
 OPTRACE "write_bitstream" END { }
 OPTRACE "write_bitstream misc" START { }
 OPTRACE "read constraints: write_bitstream_post" START { }
